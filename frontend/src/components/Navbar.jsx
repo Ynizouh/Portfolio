@@ -51,13 +51,18 @@ export default function Navbar() {
     <>
       {/* Top Header - Minimalist Links Top-Right */}
       <header className="fixed top-0 left-0 right-0 z-50 px-10 sm:px-16 md:px-24 lg:px-32 py-12 sm:py-14 md:py-16 flex items-center justify-between pointer-events-none">
-        {/* Left identity logo / title if needed */}
+        {/* Left identity logo / title */}
         <Link
           to="/"
           aria-label="Retour à l'accueil"
-          className="font-sans text-sm font-semibold tracking-widest text-white uppercase pointer-events-auto no-underline hover:opacity-75 transition-opacity"
+          className="flex items-center gap-3 font-mono text-xs tracking-widest text-white uppercase pointer-events-auto no-underline group"
         >
-          {/* Logo or clean name */}
+          <span className="w-8 h-8 rounded-lg bg-zinc-900 border border-white/20 flex items-center justify-center font-bold text-sm text-white group-hover:border-white transition-all shadow-sm">
+            M<span className="text-zinc-500">.</span>
+          </span>
+          <span className="font-sans font-medium tracking-widest hidden sm:inline-block text-zinc-300 group-hover:text-white transition-colors">
+            MATHIS // DEV
+          </span>
         </Link>
 
         {/* Right Top Links */}
