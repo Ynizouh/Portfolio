@@ -40,9 +40,10 @@ export default function AdminDashboard() {
         return
       }
       const data = await res.json()
-      setProjects(data)
+      setProjects(Array.isArray(data) ? data : [])
     } catch (err) {
       console.error('Erreur chargement :', err)
+      setProjects([])
     } finally {
       setLoading(false)
     }

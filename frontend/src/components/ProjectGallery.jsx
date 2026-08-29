@@ -13,13 +13,17 @@ export default function ProjectGallery() {
 
   useEffect(() => {
     fetch(API_URL)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('API status: ' + res.status)
+        return res.json()
+      })
       .then((data) => {
-        setProjects(data)
+        setProjects(Array.isArray(data) ? data : [])
         setLoading(false)
       })
       .catch((err) => {
         console.error('Erreur chargement projets :', err)
+        setProjects([])
         setLoading(false)
       })
   }, [])
