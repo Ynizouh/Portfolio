@@ -1,0 +1,213 @@
+/* ── Google Fonts (Anton for Editorial XXL Headings + Inter) ─────── */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+/* ── Monochrome Editorial Design Tokens ─────── */
+:root {
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #080808;
+  --color-bg-surface: #101010;
+  
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #52525b;
+  
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-hover: rgba(255, 255, 255, 0.35);
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Anton', 'Impact', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ── Base ────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--color-bg-primary);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Custom Scrollbar ───────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* ── Typography & Headings ──────────────────── */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+.editorial-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 5.8vw, 5.6rem);
+  line-height: 0.96;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.editorial-section-label {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.editorial-label-bar {
+  width: 28px;
+  height: 1.5px;
+  background-color: #52525b;
+  margin-bottom: 2rem;
+}
+
+/* ── Editorial Divider Rows ─────────────────── */
+.editorial-row {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.5rem 0;
+  transition: border-color 0.2s ease, padding 0.2s ease;
+}
+
+.editorial-row:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ── Sticky Right Navigation ────────────────── */
+.sticky-right-nav {
+  position: fixed;
+  right: 3.5rem;
+  bottom: 4rem;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  pointer-events: auto;
+}
+
+@media (max-width: 1024px) {
+  .sticky-right-nav {
+    display: none;
+  }
+}
+
+.sticky-nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: #a1a1aa;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.sticky-nav-link:hover {
+  color: #ffffff;
+}
+
+.sticky-nav-link.active {
+  color: #ffffff;
+  border-bottom: 1.5px solid #ffffff;
+}
+
+/* ── Section Container ──────────────────────── */
+.editorial-section {
+  padding: 8rem 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .editorial-section {
+    padding: 10rem 4rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .editorial-section {
+    padding: 11rem 6rem;
+    padding-right: 14rem;
+  }
+}
+
+/* ── Editorial Button ───────────────────────── */
+.btn-editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: #ffffff;
+  color: #000000 !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid #ffffff;
+}
+
+.btn-editorial:hover {
+  background: transparent;
+  color: #ffffff !important;
+}
+
+.btn-editorial-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-editorial-ghost:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
