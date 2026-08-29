@@ -4,44 +4,35 @@ export default function About() {
   const skillCols = [
     [
       'React / Front-end Moderne',
-      'JavaScript ES6+ / TypeScript',
+      'JavaScript',
       'Architecture API REST & JWT',
-      'HTML5 / CSS3 / Tailwind',
-      'Framer Motion & UI Interactive',
+      'HTML5 / CSS3',
     ],
     [
       'Node.js / Express.js',
       'MongoDB / Mongoose / Cloudinary',
       'Gestion de projet Agile / Scrum',
-      'Administration Serveur & Linux',
       'Git / GitHub & Déploiement',
     ],
   ]
 
   const experiences = [
     {
-      role: 'Développeur Web & Logiciel',
+      role: 'Développeur Web',
       company: 'Projets & Réalisations',
-      period: '2023 — PRÉSENT',
+      period: '2025 — PRÉSENT',
       description:
-        'Conception et développement d\'applications web full-stack, intégration d\'APIs sécurisées, mise en place de bases de données et optimisation des performances front-end et back-end.',
-    },
-    {
-      role: 'Administration Système & Serveur',
-      company: 'Communauté & Infrastructure',
-      period: '2021 — 2023',
-      description:
-        'Gestion d\'infrastructure technique, configuration de serveurs dédiés, coordination d\'équipe et mise en œuvre de solutions d\'automatisation logicielle.',
+        'Conception et développement d\'applications web, intégration d\'APIs sécurisées, mise en place de bases de données et optimisation des performances front-end et back-end.',
     },
   ]
 
   const education = [
     {
-      title: 'Formation Développement Web & Logiciel',
-      institution: 'Spécialisation Fullstack',
-      period: '2024 — EN COURS',
+      title: 'Formation Développement Web',
+      institution: 'Spécialisation intégrateur web',
+      period: '2025 — 2026',
       description:
-        'Formation approfondie sur les technologies web modernes, les architectures logicielles, la gestion de bases de données et la conduite de projets en méthodologie Agile.',
+        'Formation sur les technologies web modernes, les architectures logicielles, la gestion de bases de données et la conduite de projets en méthodologie Agile.',
     },
   ]
 
@@ -148,8 +139,8 @@ export default function About() {
                 className="w-full h-80 sm:h-96 object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="p-3 bg-black border-t border-white/10 flex justify-between items-center text-[10px] font-mono tracking-widest text-zinc-400 uppercase">
-                <span>CAMPUS // ACADEMIC</span>
-                <span>2024 — 2026</span>
+                <span>FORMATION A DISTANCE</span>
+                <span>2025 — EN COURS</span>
               </div>
             </div>
 

@@ -13,7 +13,7 @@ export default function Footer() {
             Email
           </a>
           <a
-            href="https://github.com/MathisSaintLeger"
+            href="https://github.com/Ynizouh"
             target="_blank"
             rel="noopener noreferrer"
             className="text-zinc-400 hover:text-white transition-colors no-underline"

@@ -32,7 +32,7 @@ export default function Hero() {
         >
           <h1 className="editorial-title text-white font-display drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
             DÉVELOPPEUR<br />
-            WEB FULLSTACK<br />
+            WEB<br />
             EN FORMATION
           </h1>
         </motion.div>
