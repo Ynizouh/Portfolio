@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Emplacement du sitemap (à décommenter quand tu auras un nom de domaine)
+# Sitemap: https://ton-portfolio.com/sitemap.xml
