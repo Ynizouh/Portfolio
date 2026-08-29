@@ -3,7 +3,7 @@
 //            et les projets par défaut
 // ─────────────────────────────────────────────
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
 const Admin = require("./models/Admin");

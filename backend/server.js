@@ -18,12 +18,12 @@ const authRoutes = require("./routes/auth");
 const projectRoutes = require("./routes/project");
 const contactRoutes = require("./routes/contact");
 
-app.use("/api/auth", authRoutes);
-app.use("/api/projects", projectRoutes);
-app.use("/api/contact", contactRoutes);
+app.use(["/api/auth", "/auth"], authRoutes);
+app.use(["/api/projects", "/projects"], projectRoutes);
+app.use(["/api/contact", "/contact"], contactRoutes);
 
 // ── Health-check ─────────────────────────────
-app.get("/", (_req, res) => {
+app.get(["/", "/api"], (_req, res) => {
   res.json({ status: "API Portfolio opérationnelle 🚀" });
 });
 

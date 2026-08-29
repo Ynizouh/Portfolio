@@ -1,19 +1,11 @@
 {
-  "name": "backend",
+  "name": "portfolio-monorepo",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js",
-    "seed": "node seed.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm --prefix frontend install && npm --prefix frontend run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
     "cloudinary": "^1.41.3",
     "cors": "^2.8.6",
