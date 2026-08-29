@@ -11,8 +11,17 @@ const EDITORIAL_PLACEHOLDER =
     </svg>`
   )
 
+function optimizeImageUrl(url, width = 800) {
+  if (!url) return EDITORIAL_PLACEHOLDER
+  if (url.includes('res.cloudinary.com') && url.includes('/upload/')) {
+    return url.replace('/upload/', `/upload/f_auto,q_auto:eco,w_${width},c_limit/`)
+  }
+  return url
+}
+
 export default function ProjectCard({ project, index, onOpenDemo }) {
   const { title, description, imageUrl, stack, githubUrl, liveUrl, isAcademic } = project
+  const optimizedUrl = optimizeImageUrl(imageUrl, 800)
 
   return (
     <motion.article
@@ -28,8 +37,13 @@ export default function ProjectCard({ project, index, onOpenDemo }) {
         onClick={() => liveUrl && onOpenDemo && onOpenDemo(project)}
       >
         <img
-          src={imageUrl || EDITORIAL_PLACEHOLDER}
+          src={optimizedUrl}
           alt={title}
+          loading="lazy"
+          decoding="async"
+          crossOrigin="anonymous"
+          width="600"
+          height="380"
           className="w-full h-full object-cover grayscale contrast-125 group-hover/img:grayscale-0 group-hover/img:scale-105 transition-all duration-700 ease-out"
         />
         <div className="absolute top-3 left-3">

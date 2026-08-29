@@ -133,11 +133,18 @@ export default function About() {
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left Photo */}
             <div className="lg:col-span-5 relative group overflow-hidden border border-white/10">
-              <img
-                src="/images/education_building.jpg"
-                alt="Education Campus"
-                className="w-full h-80 sm:h-96 object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
+              <picture>
+                <source srcSet="/images/education_building.webp" type="image/webp" />
+                <img
+                  src="/images/education_building.jpg"
+                  alt="Formation et compétences"
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="400"
+                  className="w-full h-80 sm:h-96 object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </picture>
               <div className="p-3 bg-black border-t border-white/10 flex justify-between items-center text-[10px] font-mono tracking-widest text-zinc-400 uppercase">
                 <span>FORMATION A DISTANCE</span>
                 <span>2025 — EN COURS</span>

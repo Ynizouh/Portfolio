@@ -9,11 +9,18 @@ export default function Hero() {
       {/* Background Editorial B&W Photography */}
       <div className="absolute inset-0 z-0 flex justify-end pointer-events-none">
         <div className="relative w-full lg:w-3/4 h-full">
-          <img
-            src="/images/hero_portrait.jpg"
-            alt="Portrait"
-            className="w-full h-full object-cover object-center lg:object-right grayscale contrast-125 brightness-90 opacity-60 lg:opacity-75"
-          />
+          <picture>
+            <source srcSet="/images/hero_portrait.webp" type="image/webp" />
+            <img
+              src="/images/hero_portrait.jpg"
+              alt="Portrait"
+              fetchPriority="high"
+              decoding="async"
+              width="1200"
+              height="800"
+              className="w-full h-full object-cover object-center lg:object-right grayscale contrast-125 brightness-90 opacity-60 lg:opacity-75"
+            />
+          </picture>
           {/* Subtle Film Grain and Gradient Vignettes for seamless blend */}
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/70" />
