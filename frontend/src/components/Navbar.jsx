@@ -69,7 +69,7 @@ export default function Navbar() {
             Mail
           </a>
           <a
-            href="https://github.com/MathisSaintLeger"
+            href="https://github.com/Ynizouh"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-zinc-400 transition-colors no-underline tracking-wide"

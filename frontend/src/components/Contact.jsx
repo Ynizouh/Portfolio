@@ -121,7 +121,7 @@ export default function Contact() {
                 Écrire un email ↗
               </a>
               <a
-                href="https://github.com/MathisSaintLeger"
+                href="https://github.com/Ynizouh"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-editorial-ghost"
