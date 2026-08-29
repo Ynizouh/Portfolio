@@ -13,21 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ── Routes ────────────────────────────────────
-const authRoutes = require("./routes/auth");
-const projectRoutes = require("./routes/project");
-const contactRoutes = require("./routes/contact");
-
-app.use(["/api/auth", "/auth"], authRoutes);
-app.use(["/api/projects", "/projects"], projectRoutes);
-app.use(["/api/contact", "/contact"], contactRoutes);
-
-// ── Health-check ─────────────────────────────
-app.get(["/", "/api"], (_req, res) => {
-  res.json({ status: "API Portfolio opérationnelle 🚀" });
-});
-
-// ── Connexion MongoDB & démarrage ────────────
+// ── Connexion MongoDB & logique Serverless ───
 let isConnected = false;
 
 const connectDB = async () => {
@@ -45,14 +31,28 @@ const connectDB = async () => {
   }
 };
 
-// Middleware pour s'assurer que la base de données est connectée à chaque requête
+// Middleware pour s'assurer que la base de données est connectée avant chaque route
 app.use(async (_req, res, next) => {
   try {
     await connectDB();
     next();
   } catch (err) {
-    return res.status(500).json({ error: "Erreur de connexion à la base de données" });
+    return res.status(500).json({ error: "Erreur de connexion à la base de données : " + err.message });
   }
+});
+
+// ── Routes ────────────────────────────────────
+const authRoutes = require("./routes/auth");
+const projectRoutes = require("./routes/project");
+const contactRoutes = require("./routes/contact");
+
+app.use(["/api/auth", "/auth"], authRoutes);
+app.use(["/api/projects", "/projects"], projectRoutes);
+app.use(["/api/contact", "/contact"], contactRoutes);
+
+// ── Health-check ─────────────────────────────
+app.get(["/", "/api"], (_req, res) => {
+  res.json({ status: "API Portfolio opérationnelle 🚀" });
 });
 
 // Démarrage local si exécuté directement
