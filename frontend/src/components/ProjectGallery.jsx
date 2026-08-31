@@ -35,9 +35,9 @@ export default function ProjectGallery() {
   })
 
   const filters = [
-    { key: 'all', label: 'All Projects', count: projects.length },
-    { key: 'academic', label: 'Academic', count: projects.filter((p) => p.isAcademic).length },
-    { key: 'personal', label: 'Personal & Labs', count: projects.filter((p) => !p.isAcademic).length },
+    { key: 'all', label: 'Tous les projets', count: projects.length },
+    { key: 'academic', label: 'Projets de formation', count: projects.filter((p) => p.isAcademic).length },
+    { key: 'personal', label: 'Projets personnels', count: projects.filter((p) => !p.isAcademic).length },
   ]
 
   return (
@@ -51,7 +51,7 @@ export default function ProjectGallery() {
       >
         <span className="editorial-section-label">PORTFOLIO</span>
         <div className="editorial-label-bar" />
-        <h2 className="editorial-title mb-8">PROJECTS</h2>
+        <h2 className="editorial-title mb-8">PROJETS</h2>
 
         {/* Minimalist Filter Bar */}
         <div className="flex flex-wrap items-center gap-8 mb-16 border-b border-white/10 pb-4">
@@ -79,7 +79,7 @@ export default function ProjectGallery() {
         {loading && (
           <div className="py-20 text-center">
             <span className="text-xs font-mono tracking-widest text-zinc-500 uppercase">
-              Loading Projects...
+              Chargement des projets...
             </span>
           </div>
         )}
@@ -117,3 +117,4 @@ export default function ProjectGallery() {
     </section>
   )
 }
+

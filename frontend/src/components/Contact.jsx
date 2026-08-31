@@ -11,17 +11,17 @@ const contactInfo = [
   },
   {
     label: 'GitHub',
-    value: 'github.com/mxtihs',
-    href: 'https://github.com/MathisSaintLeger',
+    value: 'github.com/Ynizouh',
+    href: 'https://github.com/Ynizouh',
   },
   {
     label: 'Localisation',
-    value: 'France — Remote',
+    value: 'France',
     href: null,
   },
   {
-    label: 'Disponibilité',
-    value: 'Ouvert aux alternances & stages',
+    label: 'Statut',
+    value: 'En formation — Ouvert aux opportunités',
     href: null,
   },
 ]
@@ -51,9 +51,8 @@ export default function Contact() {
       if (!response.ok) throw new Error('Erreur API')
 
       setStatus('success')
-      setForm({ name: '', email: '', message: '' }) // Reset du formulaire
+      setForm({ name: '', email: '', message: '' })
 
-      // Remet le bouton à zéro après 5s
       setTimeout(() => setStatus('idle'), 5000)
     } catch (err) {
       console.error(err)
@@ -62,29 +61,38 @@ export default function Contact() {
     }
   }
 
+  const handleFocusForm = () => {
+    const el = document.getElementById('contact-name')
+    if (el) {
+      el.focus()
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }
+
   return (
     <section id="contact" className="editorial-section">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7 }}
       >
-        {/* Editorial Header */}
-        <span className="editorial-section-label">GET IN TOUCH</span>
+        {/* En-tête */}
+        <span className="editorial-section-label">ME CONTACTER</span>
         <div className="editorial-label-bar" />
         <h2 className="editorial-title mb-16">CONTACT</h2>
 
-        {/* Two-column layout */}
+        {/* Disposition en deux colonnes */}
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
 
-          {/* ── Left — Info ─────────────────────────────────────────── */}
+          {/* ── Gauche — Informations ─────────────────────────────────── */}
           <div className="lg:col-span-5 space-y-12">
             <p className="text-zinc-300 text-base leading-relaxed font-sans font-light">
-              Une opportunité, une question ou un retour sur mon travail ?
-              Écrivez-moi directement — je réponds sous 48 h.
+              Une opportunité, un projet ou une question sur mon parcours ?
+              Vous pouvez m'envoyer un message directement via le formulaire ci-contre.
             </p>
 
-            {/* Contact details */}
+            {/* Détails de contact */}
             <ul className="space-y-0 border-t border-white/10">
               {contactInfo.map((item) => (
                 <li
@@ -112,14 +120,15 @@ export default function Contact() {
               ))}
             </ul>
 
-            {/* CTA links */}
+            {/* Boutons d'action */}
             <div className="flex flex-wrap gap-4 pt-2">
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="btn-editorial"
+              <button
+                type="button"
+                onClick={handleFocusForm}
+                className="btn-editorial cursor-pointer"
               >
-                Écrire un email ↗
-              </a>
+                Écrire un message ↓
+              </button>
               <a
                 href="https://github.com/Ynizouh"
                 target="_blank"
@@ -131,19 +140,20 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* ── Right — Form ────────────────────────────────────────── */}
+          {/* ── Droite — Formulaire ──────────────────────────────────── */}
           <motion.div
             className="lg:col-span-7"
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
             <form
               onSubmit={handleSubmit}
               noValidate
-              className="space-y-0 border border-white/10"
+              className="space-y-0 border border-white/10 bg-black"
             >
-              {/* Name */}
+              {/* Nom */}
               <div className="border-b border-white/10 p-6 group focus-within:border-white/40 transition-colors">
                 <label
                   htmlFor="contact-name"
@@ -205,14 +215,14 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Footer row */}
+              {/* Ligne inférieure d'état et validation */}
               <div className="p-6 flex items-center justify-between gap-4 flex-wrap">
                 {status === 'success' ? (
                   <p
                     role="status"
                     className="text-xs font-mono tracking-widest text-emerald-400 uppercase"
                   >
-                    ✓ Message envoyé !
+                    ✓ Message envoyé avec succès !
                   </p>
                 ) : status === 'error' ? (
                   <p
@@ -222,16 +232,16 @@ export default function Contact() {
                     ✕ Erreur lors de l'envoi
                   </p>
                 ) : (
-                  <p className="text-xs font-mono tracking-widest text-zinc-400 uppercase">
-                    Connecté à l'API Node.js
+                  <p className="text-xs font-mono tracking-widest text-zinc-500 uppercase">
+                    Formulaire sécurisé
                   </p>
                 )}
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="btn-editorial shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="btn-editorial shrink-0 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
-                  {status === 'loading' ? 'Envoi...' : 'Envoyer →'}
+                  {status === 'loading' ? 'Envoi...' : 'Envoyer le message →'}
                 </button>
               </div>
             </form>
@@ -241,3 +251,4 @@ export default function Contact() {
     </section>
   )
 }
+

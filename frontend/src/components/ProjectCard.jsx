@@ -7,7 +7,7 @@ const EDITORIAL_PLACEHOLDER =
       <rect width="600" height="380" fill="#080808"/>
       <rect x="20" y="20" width="560" height="340" fill="none" stroke="#27272a" stroke-width="1"/>
       <circle cx="300" cy="190" r="30" fill="none" stroke="#52525b" stroke-width="1"/>
-      <text x="300" y="195" text-anchor="middle" fill="#71717a" font-family="sans-serif" font-size="11" letter-spacing="2">PROJECT PREVIEW</text>
+      <text x="300" y="195" text-anchor="middle" fill="#71717a" font-family="sans-serif" font-size="11" letter-spacing="2">APERÇU DU PROJET</text>
     </svg>`
   )
 
@@ -48,7 +48,7 @@ export default function ProjectCard({ project, index, onOpenDemo }) {
         />
         <div className="absolute top-3 left-3">
           <span className="text-[10px] uppercase tracking-widest px-2.5 py-1 bg-black/80 text-white font-mono border border-white/20">
-            {isAcademic ? 'ACADEMIC' : 'PERSONAL'}
+            {isAcademic ? 'FORMATION' : 'PERSONNEL'}
           </span>
         </div>
 
@@ -100,7 +100,7 @@ export default function ProjectCard({ project, index, onOpenDemo }) {
                 onClick={() => onOpenDemo && onOpenDemo(project)}
                 className="text-white hover:text-zinc-400 transition-colors cursor-pointer inline-flex items-center gap-1.5 font-medium"
               >
-                Live Demo <span className="text-emerald-400">●</span>
+                Démo en direct <span className="text-emerald-400">●</span>
               </button>
             )}
           </div>
@@ -109,3 +109,4 @@ export default function ProjectCard({ project, index, onOpenDemo }) {
     </motion.article>
   )
 }
+

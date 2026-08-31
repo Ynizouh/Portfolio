@@ -16,6 +16,15 @@ export default function DemoModal({ project, isOpen, onClose }) {
       setIsFullscreen(false)
     }
 
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
+  // Gestion de la touche Échap
+  useEffect(() => {
+    if (!isOpen) return
+
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         if (isFullscreen) {
@@ -27,11 +36,19 @@ export default function DemoModal({ project, isOpen, onClose }) {
     }
 
     window.addEventListener('keydown', handleKeyDown)
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'unset'
-    }
+    return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isOpen, isFullscreen, onClose])
+
+  // Sécurité : arrêt du loader après 6 secondes si onLoad ne se déclenche pas
+  useEffect(() => {
+    if (isOpen && isLoading) {
+      const timer = setTimeout(() => {
+        setIsLoading(false)
+      }, 6000)
+      return () => clearTimeout(timer)
+    }
+  }, [isOpen, isLoading, iframeKey])
+
 
   if (!project || !project.liveUrl) return null
 

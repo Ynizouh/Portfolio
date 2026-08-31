@@ -2,30 +2,42 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const navItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Work', href: '#work' },
-  { label: 'Education', href: '#education' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'À propos', href: '#about' },
+  { label: 'Compétences', href: '#skills' },
+  { label: 'Parcours', href: '#work' },
+  { label: 'Formation', href: '#education' },
+  { label: 'Projets', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ]
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('about')
+  const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
   const isHome = location.pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'skills', 'work', 'education', 'projects', 'contact']
-      const scrollPos = window.scrollY + 250
+      const scrollBottom = window.innerHeight + window.scrollY
+      const docHeight = document.documentElement.scrollHeight
 
-      for (const section of sections) {
+      setIsScrolled(window.scrollY > 40)
+
+      // Si on approche du bas de page, activer immédiatement la section contact
+      if (scrollBottom >= docHeight - 120) {
+        setActiveSection('contact')
+        return
+      }
+
+      const sections = ['about', 'skills', 'work', 'education', 'projects', 'contact']
+      const scrollPos = window.scrollY + 280
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i]
         const el = document.getElementById(section)
         if (el) {
           const top = el.offsetTop
-          const height = el.offsetHeight
-          if (scrollPos >= top && scrollPos < top + height) {
+          if (scrollPos >= top) {
             setActiveSection(section)
             break
           }
@@ -33,7 +45,8 @@ export default function Navbar() {
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -49,57 +62,50 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Header - Minimalist Links Top-Right */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-10 sm:px-16 md:px-24 lg:px-32 py-12 sm:py-14 md:py-16 flex items-center justify-between pointer-events-none">
-        {/* Left identity logo / title */}
+      {/* Top Header - Responsive, Épuré & Flouté au scroll */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 px-6 sm:px-12 md:px-20 lg:px-32 flex items-center justify-between transition-all duration-300 ${
+          isScrolled
+            ? 'bg-black/90 backdrop-blur-md border-b border-white/10 py-4 sm:py-5 shadow-2xl'
+            : 'bg-transparent py-6 sm:py-8 md:py-10'
+        }`}
+      >
+        {/* Logo / Identité */}
         <Link
           to="/"
           aria-label="Retour à l'accueil"
-          className="flex items-center gap-3 font-mono text-xs tracking-widest text-white uppercase pointer-events-auto no-underline group"
+          className="flex items-center gap-3 font-mono text-xs tracking-widest text-white uppercase no-underline group"
         >
-          <span className="w-8 h-8 rounded-lg bg-zinc-900 border border-white/20 flex items-center justify-center font-bold text-sm text-white group-hover:border-white transition-all shadow-sm">
+          <span className="font-bold text-sm">
             M<span className="text-zinc-500">.</span>
           </span>
           <span className="font-sans font-medium tracking-widest hidden sm:inline-block text-zinc-300 group-hover:text-white transition-colors">
-            MATHIS // DEV
+            MATHIS // DEV WEB
           </span>
         </Link>
 
-        {/* Right Top Links */}
-        <nav className="flex items-center gap-8 sm:gap-12 pointer-events-auto font-sans text-xs sm:text-sm text-white">
+        {/* Liens en haut à droite */}
+        <nav className="flex items-center gap-6 sm:gap-10 font-sans text-xs sm:text-sm text-white">
           <a
-            href="mailto:mathissaint-leger@laposte.net"
-            className="text-white hover:text-zinc-400 transition-colors no-underline tracking-wide"
+            href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className="text-white hover:text-zinc-400 transition-colors no-underline tracking-wider uppercase text-xs font-mono cursor-pointer"
           >
-            Mail
+            Contact
           </a>
           <a
             href="https://github.com/Ynizouh"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-zinc-400 transition-colors no-underline tracking-wide"
+            className="text-zinc-400 hover:text-white transition-colors no-underline tracking-wider uppercase text-xs font-mono flex items-center gap-1"
           >
-            GitHub
+            GitHub ↗
           </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-zinc-400 transition-colors no-underline tracking-wide"
-          >
-            LinkedIn
-          </a>
-          <Link
-            to="/login"
-            className="text-zinc-400 hover:text-white transition-colors no-underline tracking-wide"
-          >
-            Admin
-          </Link>
         </nav>
       </header>
 
-      {/* Sticky Right Side Navigation Menu (As in Reference Screenshots) */}
-      <aside className="sticky-right-nav" aria-label="Page Navigation">
+      {/* Menu latéral droit discret (Desktop) */}
+      <aside className="sticky-right-nav" aria-label="Navigation de la page">
         {navItems.map((item) => {
           const sectionId = item.href.replace('#', '')
           const isActive = activeSection === sectionId
@@ -119,3 +125,5 @@ export default function Navbar() {
     </>
   )
 }
+
+

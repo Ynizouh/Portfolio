@@ -3,42 +3,42 @@ import { motion } from 'framer-motion'
 export default function About() {
   const skillCols = [
     [
-      'React / Front-end Moderne',
-      'JavaScript',
+      'React.js & Front-end Moderne',
+      'JavaScript (ES6+)',
       'Architecture API REST & JWT',
-      'HTML5 / CSS3',
+      'HTML5 / CSS3 & Responsive Design',
     ],
     [
-      'Node.js / Express.js',
-      'MongoDB / Mongoose / Cloudinary',
-      'Gestion de projet Agile / Scrum',
-      'Git / GitHub & Déploiement',
+      'Node.js & Express.js',
+      'MongoDB / Mongoose & Cloudinary',
+      'Git / GitHub & Bonnes Pratiques',
+      'Méthodes Agiles / Scrum',
     ],
   ]
 
   const experiences = [
     {
-      role: 'Développeur Web',
-      company: 'Projets & Réalisations',
+      role: 'Développeur Web en Formation',
+      company: 'Projets Pratiques & Cursus',
       period: '2025 — PRÉSENT',
       description:
-        'Conception et développement d\'applications web, intégration d\'APIs sécurisées, mise en place de bases de données et optimisation des performances front-end et back-end.',
+        'Conception et développement d\'applications web complètes (Front-end & Back-end) à travers des projets concrets : création d\'interfaces dynamiques et responsives, intégration d\'APIs REST, modélisation de bases de données et authentification sécurisée.',
     },
   ]
 
   const education = [
     {
-      title: 'Formation Développement Web',
-      institution: 'Spécialisation intégrateur web',
+      title: 'Formation Développeur Web',
+      institution: 'Intégration & Développement Web Moderne',
       period: '2025 — 2026',
       description:
-        'Formation sur les technologies web modernes, les architectures logicielles, la gestion de bases de données et la conduite de projets en méthodologie Agile.',
+        'Formation approfondie aux technologies web actuelles (JavaScript, React, Node.js, Express, bases de données NoSQL), aux architectures logicielles et à la rigueur de code avec Git.',
     },
   ]
 
   return (
     <div className="w-full">
-      {/* ── Section 1: SKILLS / EXPERTISE (Screenshot 2 style) ──────── */}
+      {/* ── Section 1: COMPÉTENCES TECHNIQUES ──────────────────────── */}
       <section id="skills" className="editorial-section">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -46,12 +46,12 @@ export default function About() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
         >
-          <span className="editorial-section-label">EXPERTISE</span>
+          <span className="editorial-section-label">EXPERTISE TECHNIQUE</span>
           <div className="editorial-label-bar" />
-          <h2 className="editorial-title mb-16">SKILLS</h2>
+          <h2 className="editorial-title mb-16">COMPÉTENCES</h2>
 
           <div className="grid md:grid-cols-2 gap-x-16 gap-y-2">
-            {/* Left Column */}
+            {/* Colonne gauche */}
             <div>
               {skillCols[0].map((skill) => (
                 <div key={skill} className="editorial-row">
@@ -62,7 +62,7 @@ export default function About() {
               ))}
             </div>
 
-            {/* Right Column */}
+            {/* Colonne droite */}
             <div>
               {skillCols[1].map((skill) => (
                 <div key={skill} className="editorial-row">
@@ -76,7 +76,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* ── Section 2: WORK EXPERIENCE (Screenshot 3 style) ──────────── */}
+      {/* ── Section 2: PARCOURS & PROJETS ──────────────────────────── */}
       <section id="work" className="editorial-section">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -84,10 +84,10 @@ export default function About() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
         >
-          <span className="editorial-section-label">CAREER</span>
+          <span className="editorial-section-label">PARCOURS</span>
           <div className="editorial-label-bar" />
           <h2 className="editorial-title mb-16">
-            WORK<br />EXPERIENCE
+            PARCOURS &<br />PROJETS
           </h2>
 
           <div className="border-t border-white/10">
@@ -118,7 +118,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* ── Section 3: EDUCATION (Screenshot 4 style) ────────────────── */}
+      {/* ── Section 3: FORMATION ──────────────────────────────────── */}
       <section id="education" className="editorial-section">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -126,12 +126,12 @@ export default function About() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
         >
-          <span className="editorial-section-label">PARCOURS</span>
+          <span className="editorial-section-label">CURSUS</span>
           <div className="editorial-label-bar" />
-          <h2 className="editorial-title mb-16">EDUCATION</h2>
+          <h2 className="editorial-title mb-16">FORMATION</h2>
 
           <div className="grid lg:grid-cols-12 gap-12 items-center">
-            {/* Left Photo */}
+            {/* Photo gauche */}
             <div className="lg:col-span-5 relative group overflow-hidden border border-white/10">
               <picture>
                 <source srcSet="/images/education_building.webp" type="image/webp" />
@@ -146,12 +146,12 @@ export default function About() {
                 />
               </picture>
               <div className="p-3 bg-black border-t border-white/10 flex justify-between items-center text-[10px] font-mono tracking-widest text-zinc-400 uppercase">
-                <span>FORMATION A DISTANCE</span>
+                <span>FORMATION À DISTANCE</span>
                 <span>2025 — EN COURS</span>
               </div>
             </div>
 
-            {/* Right Details */}
+            {/* Détails droite */}
             <div className="lg:col-span-7 space-y-6">
               {education.map((edu) => (
                 <div key={edu.title} className="space-y-4">
@@ -180,3 +180,4 @@ export default function About() {
     </div>
   )
 }
+

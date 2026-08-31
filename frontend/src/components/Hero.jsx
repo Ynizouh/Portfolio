@@ -1,6 +1,14 @@
 import { motion } from 'framer-motion'
 
 export default function Hero() {
+  const handleScrollTo = (e, targetId) => {
+    e.preventDefault()
+    const el = document.querySelector(targetId)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section
       id="about"
@@ -29,7 +37,7 @@ export default function Hero() {
       </div>
 
       {/* Main Content */}
-      <div className="editorial-section min-h-screen flex flex-col justify-between pt-36 md:pt-44 pb-16 md:pb-24 relative z-10 w-full">
+      <div className="editorial-section min-h-screen flex flex-col justify-between pt-32 sm:pt-40 md:pt-44 pb-16 md:pb-24 relative z-10 w-full">
         {/* Editorial Giant Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -52,18 +60,20 @@ export default function Hero() {
           className="max-w-xl mt-16 sm:mt-24 space-y-5"
         >
           <p className="text-zinc-300 text-sm sm:text-base leading-relaxed font-sans font-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-            Étudiant en développement web, passionné par la résolution de problèmes techniques et la création d'expériences logicielles fiables, du concept initial jusqu'au déploiement en production.
+            Étudiant en développement web, passionné par la conception d'interfaces modernes et fiables, l'intégration d'APIs et la réalisation de projets concrets de bout en bout.
           </p>
           <div className="flex items-center gap-8 pt-2">
             <a
               href="#projects"
-              className="text-xs uppercase tracking-widest text-white hover:text-zinc-400 border-b border-white hover:border-zinc-400 pb-1 transition-colors no-underline font-sans"
+              onClick={(e) => handleScrollTo(e, '#projects')}
+              className="text-xs uppercase tracking-widest text-white hover:text-zinc-400 border-b border-white hover:border-zinc-400 pb-1 transition-colors no-underline font-sans cursor-pointer"
             >
               Explorer les projets →
             </a>
             <a
               href="#skills"
-              className="text-xs uppercase tracking-widest text-zinc-400 hover:text-white pb-1 transition-colors no-underline font-sans"
+              onClick={(e) => handleScrollTo(e, '#skills')}
+              className="text-xs uppercase tracking-widest text-zinc-400 hover:text-white pb-1 transition-colors no-underline font-sans cursor-pointer"
             >
               Voir les compétences
             </a>
@@ -73,3 +83,4 @@ export default function Hero() {
     </section>
   )
 }
+
