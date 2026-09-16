@@ -54,7 +54,7 @@ export default function ProjectGallery() {
         <h2 className="editorial-title mb-8">PROJETS</h2>
 
         {/* Minimalist Filter Bar */}
-        <div className="flex flex-wrap items-center gap-8 mb-16 border-b border-white/10 pb-4">
+        <div className="flex flex-wrap items-center gap-8 mb-24 border-b border-white/10 pb-4">
           {filters.map((f) => {
             const isActive = filter === f.key
 

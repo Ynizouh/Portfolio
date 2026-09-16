@@ -30,6 +30,14 @@ const projectSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    context: {
+      type: String,
+      default: "",
+    },
+    perspectives: {
+      type: String,
+      default: "",
+    },
     isAcademic: {
       type: Boolean,
       default: false,

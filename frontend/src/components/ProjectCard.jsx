@@ -20,7 +20,7 @@ function optimizeImageUrl(url, width = 800) {
 }
 
 export default function ProjectCard({ project, index, onOpenDemo }) {
-  const { title, description, imageUrl, stack, githubUrl, liveUrl, isAcademic } = project
+  const { title, description, imageUrl, stack, githubUrl, liveUrl, isAcademic, context, perspectives } = project
   const optimizedUrl = optimizeImageUrl(imageUrl, 800)
 
   return (
@@ -29,11 +29,11 @@ export default function ProjectCard({ project, index, onOpenDemo }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group flex flex-col h-full bg-black border-b border-white/10 pb-8"
+      className="group flex flex-col h-full bg-black border-b border-white/10 pb-12"
     >
       {/* Visual Frame - High Contrast Grayscale / Duotone */}
       <div 
-        className="relative h-60 overflow-hidden bg-zinc-950 mb-5 cursor-pointer group/img"
+        className="relative h-60 overflow-hidden bg-zinc-950 mb-10 cursor-pointer group/img"
         onClick={() => liveUrl && onOpenDemo && onOpenDemo(project)}
       >
         <img
@@ -63,18 +63,43 @@ export default function ProjectCard({ project, index, onOpenDemo }) {
 
       {/* Content */}
       <div className="flex-1 flex flex-col justify-between">
-        <div>
-          <h3 className="text-white text-xl sm:text-2xl font-normal font-sans tracking-tight mb-2 group-hover:text-zinc-300 transition-colors">
+        <div className="space-y-8">
+          <h3 className="text-white text-xl sm:text-2xl font-normal font-sans tracking-tight group-hover:text-zinc-300 transition-colors">
             {title}
           </h3>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-4 font-light">
-            {description}
-          </p>
+
+          {/* Description */}
+          <div>
+            <span className="text-xs uppercase tracking-widest text-white font-sans font-bold block mb-1.5">Description</span>
+            <p className="text-zinc-400 text-sm leading-relaxed font-light">
+              {description}
+            </p>
+          </div>
+
+          {/* Contexte du projet */}
+          {context && (
+            <div>
+              <span className="text-xs uppercase tracking-widest text-white font-sans font-bold block mb-1.5">Contexte</span>
+              <p className="text-zinc-400 text-sm leading-relaxed font-light">
+                {context}
+              </p>
+            </div>
+          )}
+
+          {/* Perspectives d'amélioration */}
+          {perspectives && (
+            <div>
+              <span className="text-xs uppercase tracking-widest text-white font-sans font-bold block mb-1.5">Perspectives</span>
+              <p className="text-zinc-400 text-sm leading-relaxed font-light">
+                {perspectives}
+              </p>
+            </div>
+          )}
         </div>
 
-        <div>
+        <div className="mt-10">
           {/* Stack */}
-          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-zinc-500 font-mono mb-6">
+          <div className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-zinc-500 font-mono mb-8">
             {stack?.map((tech) => (
               <span key={tech}>
                 #{tech}
@@ -83,7 +108,7 @@ export default function ProjectCard({ project, index, onOpenDemo }) {
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-6 pt-3 border-t border-white/10 text-xs font-sans uppercase tracking-widest">
+          <div className="flex items-center gap-6 pt-5 border-t border-white/10 text-xs font-sans uppercase tracking-widest">
             {githubUrl && (
               <a
                 href={githubUrl}

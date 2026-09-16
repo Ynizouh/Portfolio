@@ -7,6 +7,8 @@ const API_URL = '/api/projects'
 const emptyForm = {
   title: '',
   description: '',
+  context: '',
+  perspectives: '',
   stack: '',
   githubUrl: '',
   liveUrl: '',
@@ -97,6 +99,8 @@ export default function AdminDashboard() {
     setForm({
       title: project.title,
       description: project.description,
+      context: project.context || '',
+      perspectives: project.perspectives || '',
       stack: project.stack?.join(', ') || '',
       githubUrl: project.githubUrl || '',
       liveUrl: project.liveUrl || '',
@@ -125,6 +129,8 @@ export default function AdminDashboard() {
     )
     formData.append('githubUrl', form.githubUrl)
     formData.append('liveUrl', form.liveUrl)
+    formData.append('context', form.context)
+    formData.append('perspectives', form.perspectives)
     formData.append('isAcademic', form.isAcademic)
     formData.append('isVisible', form.isVisible)
     if (imageFile) formData.append('image', imageFile)
@@ -306,6 +312,44 @@ export default function AdminDashboard() {
                     value={form.description}
                     onChange={handleChange}
                     placeholder="Décris le projet..."
+                    rows={3}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[var(--color-bg-primary)] border border-[var(--color-border)] text-[var(--color-text-primary)] text-sm placeholder-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:outline-none transition-all resize-none"
+                  />
+                </div>
+
+                {/* Contexte du projet */}
+                <div>
+                  <label
+                    htmlFor="admin-context"
+                    className="block text-xs font-medium text-[var(--color-text-secondary)] mb-1.5"
+                  >
+                    Contexte du projet
+                  </label>
+                  <textarea
+                    id="admin-context"
+                    name="context"
+                    value={form.context}
+                    onChange={handleChange}
+                    placeholder="Pourquoi ce projet a été réalisé ? Quel était le besoin ou la commande ?"
+                    rows={3}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[var(--color-bg-primary)] border border-[var(--color-border)] text-[var(--color-text-primary)] text-sm placeholder-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:outline-none transition-all resize-none"
+                  />
+                </div>
+
+                {/* Perspectives d'amélioration */}
+                <div>
+                  <label
+                    htmlFor="admin-perspectives"
+                    className="block text-xs font-medium text-[var(--color-text-secondary)] mb-1.5"
+                  >
+                    Perspectives d'amélioration
+                  </label>
+                  <textarea
+                    id="admin-perspectives"
+                    name="perspectives"
+                    value={form.perspectives}
+                    onChange={handleChange}
+                    placeholder="Quelles améliorations futures sont envisagées ?"
                     rows={3}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-[var(--color-bg-primary)] border border-[var(--color-border)] text-[var(--color-text-primary)] text-sm placeholder-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:outline-none transition-all resize-none"
                   />

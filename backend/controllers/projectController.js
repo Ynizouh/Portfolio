@@ -43,7 +43,7 @@ exports.getOne = async (req, res) => {
 // ── POST /api/projects — Protégé (JWT) ───────
 exports.create = async (req, res) => {
   try {
-    const { title, description, stack, githubUrl, liveUrl, isAcademic } = req.body;
+    const { title, description, stack, githubUrl, liveUrl, isAcademic, context, perspectives } = req.body;
 
     // L'image est uploadée par Multer → Cloudinary
     const imageUrl = req.file ? req.file.path : "";
@@ -57,6 +57,8 @@ exports.create = async (req, res) => {
       stack: stack ? JSON.parse(stack) : [],
       githubUrl: githubUrl || "",
       liveUrl: liveUrl || "",
+      context: context || "",
+      perspectives: perspectives || "",
       isAcademic: isAcademic === "true" || isAcademic === true,
       isVisible: isVisible === undefined ? true : isVisible === "true" || isVisible === true,
     });
@@ -76,7 +78,7 @@ exports.update = async (req, res) => {
       return res.status(404).json({ message: "Projet introuvable." });
     }
 
-    const { title, description, stack, githubUrl, liveUrl, isAcademic } = req.body;
+    const { title, description, stack, githubUrl, liveUrl, isAcademic, context, perspectives } = req.body;
 
     // Si une nouvelle image est envoyée, supprimer l'ancienne de Cloudinary
     if (req.file) {
@@ -92,6 +94,8 @@ exports.update = async (req, res) => {
     if (stack !== undefined) project.stack = JSON.parse(stack);
     if (githubUrl !== undefined) project.githubUrl = githubUrl;
     if (liveUrl !== undefined) project.liveUrl = liveUrl;
+    if (context !== undefined) project.context = context;
+    if (perspectives !== undefined) project.perspectives = perspectives;
     if (isAcademic !== undefined)
       project.isAcademic = isAcademic === "true" || isAcademic === true;
 
