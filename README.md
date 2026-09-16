@@ -1,4 +1,4 @@
-# 🖤 Portfolio — Mathis | Développeur Web Fullstack
+# 🖤 Portfolio — Mathis | Développeur Web
 
 Portfolio personnel de développeur web, conçu pour présenter mes projets académiques et personnels.  
 Application fullstack moderne avec un panneau d'administration protégé permettant la gestion complète des projets (CRUD), l'upload d'images via Cloudinary, et un formulaire de contact.
