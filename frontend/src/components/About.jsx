@@ -87,7 +87,7 @@ export default function About() {
           <span className="editorial-section-label">PARCOURS</span>
           <div className="editorial-label-bar" />
           <h2 className="editorial-title mb-16">
-            PARCOURS SUPER PPARCCOURS &<br />PROJETS
+            PARCOURS &<br />PROJETS
           </h2>
 
           <div className="border-t border-white/10">
